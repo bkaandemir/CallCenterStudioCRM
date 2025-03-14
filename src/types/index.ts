@@ -5,6 +5,7 @@ export interface Contact {
   email: string;
   company: string;
   jobTitle: string;
+  location?: string;
   linkedInUrl?: string;
   linkedInAvatar?: string;
   lastInteraction: string;
@@ -156,4 +157,26 @@ export interface Task {
   customFields?: {
     [key: string]: any;
   };
+}
+
+export type UserRole = 'admin' | 'manager' | 'agent';
+
+export interface IUser {
+  id: string;
+  email: string;
+  password: string; // In real app, this should be hashed
+  name: string;
+  role: UserRole;
+  avatar: string;
+  department?: string;
+  permissions: {
+    canManageUsers: boolean;
+    canManageRoles: boolean;
+    canViewReports: boolean;
+    canManageSettings: boolean;
+    canDeleteRecords: boolean;
+  };
+  createdAt: string;
+  lastLogin: string;
+  status: 'active' | 'inactive';
 }

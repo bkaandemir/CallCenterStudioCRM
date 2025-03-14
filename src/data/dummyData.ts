@@ -1,4 +1,4 @@
-import { Contact, TicketType as Ticket, Note, Activity, Task } from '../types';
+import { Contact, TicketType as Ticket, Note, Activity, Task, UserRole } from '../types';
 
 const generatePhoneNumber = () => {
   const areaCode = Math.floor(Math.random() * 900) + 100;
@@ -301,10 +301,71 @@ const notes = generateDummyNotes(30);
 const activities = generateDummyActivities(50);
 const tasks = generateDummyTasks(10);
 
+export const users = [
+  {
+    id: 'user-1',
+    email: 'admin@example.com',
+    password: 'admin123', // In real app, this should be hashed
+    name: 'John Doe',
+    role: 'admin' as UserRole,
+    avatar: 'https://ui-avatars.com/api/?name=John+Doe&background=4e86fd&color=fff',
+    department: 'Management',
+    permissions: {
+      canManageUsers: true,
+      canManageRoles: true,
+      canViewReports: true,
+      canManageSettings: true,
+      canDeleteRecords: true
+    },
+    createdAt: '2024-01-01T00:00:00Z',
+    lastLogin: new Date().toISOString(),
+    status: 'active' as 'active' | 'inactive'
+  },
+  {
+    id: 'user-2',
+    email: 'manager@example.com',
+    password: 'manager123',
+    name: 'Jane Smith',
+    role: 'manager' as UserRole,
+    avatar: 'https://ui-avatars.com/api/?name=Jane+Smith&background=39b171&color=fff',
+    department: 'Sales',
+    permissions: {
+      canManageUsers: false,
+      canManageRoles: false,
+      canViewReports: true,
+      canManageSettings: false,
+      canDeleteRecords: false
+    },
+    createdAt: '2024-01-02T00:00:00Z',
+    lastLogin: new Date().toISOString(),
+    status: 'active' as 'active' | 'inactive'
+  },
+  {
+    id: 'user-3',
+    email: 'agent@example.com',
+    password: 'agent123',
+    name: 'Mike Johnson',
+    role: 'agent' as UserRole,
+    avatar: 'https://ui-avatars.com/api/?name=Mike+Johnson&background=f47a00&color=fff',
+    department: 'Support',
+    permissions: {
+      canManageUsers: false,
+      canManageRoles: false,
+      canViewReports: false,
+      canManageSettings: false,
+      canDeleteRecords: false
+    },
+    createdAt: '2024-01-03T00:00:00Z',
+    lastLogin: new Date().toISOString(),
+    status: 'active' as 'active' | 'inactive'
+  }
+];
+
 export const dummyData = {
   contacts,
   tickets,
   notes,
   activities,
-  tasks
+  tasks,
+  users
 };
